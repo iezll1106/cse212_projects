@@ -8,12 +8,20 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // PLAN:
+        // 1. Create a new array of size 'length'.
+        // 2. Use a for loop to fill each element with the correct multiple.
+        //    Like: result[0] = number * 1, result[1] = number * 2, ...
+        // 3. Return the filled array.
 
-        return []; // replace this return statement with your own
+        double[] result = new double[length];
+
+        for (int i = 0; i < length; i++)
+        {
+            result[i] = number * (i + 1); // Compute the (i+1)th multiple of number
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -25,9 +33,24 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // PLAN:
+        // 1. Find the slice of the list that needs to move to the front.
+        //    That slice starts from (data.Count - amount) to the end.
+        // 2. Get the remaining part (from beginning up to that index).
+        // 3. Clear the list.
+        // 4. Add the rotated part first, then the remaining part.
+
+        int n = data.Count;
+
+        // Get the last 'amount' elements
+        List<int> endSlice = data.GetRange(n - amount, amount);
+
+        // Get the first 'n - amount' elements
+        List<int> startSlice = data.GetRange(0, n - amount);
+
+        // Clear the original list and add the slices in rotated order
+        data.Clear();
+        data.AddRange(endSlice);
+        data.AddRange(startSlice);
     }
 }
