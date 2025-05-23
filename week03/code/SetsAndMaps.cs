@@ -65,6 +65,21 @@ public static class SetsAndMaps
         {
             var fields = line.Split(",");
             // TODO Problem 2 - ADD YOUR CODE HERE
+
+            //Ensure 
+            if (fields.Length > 3)
+            {
+                string degree = fields[3].Trim(); //Education field
+
+                if (degrees.ContainsKey(degree))
+                {
+                    degrees[degree]++;
+                }
+                else
+                {
+                    degrees[degree] = 1;
+                }
+            }
         }
 
         return degrees;
@@ -89,7 +104,36 @@ public static class SetsAndMaps
     public static bool IsAnagram(string word1, string word2)
     {
         // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+        // Normalize by removing spaces and converting to lowercase
+        string cleaned1 = new string(word1.ToLower().Where(c => !char.IsWhiteSpace(c)).ToArray());
+        string cleaned2 = new string(word2.ToLower().Where(c => !char.IsWhiteSpace(c)).ToArray());
+
+        if (cleaned1.Length != cleaned2.Length)
+            return false;
+
+        var letterCount = new Dictionary<char, int>();
+
+        // Count letters in the first word
+        foreach (char c in cleaned1)
+        {
+            if (letterCount.ContainsKey(c))
+                letterCount[c]++;
+            else
+                letterCount[c] = 1;
+        }
+
+        // Subtract counts using second word
+        foreach (char c in cleaned2)
+        {
+            if (!letterCount.ContainsKey(c))
+                return false;
+
+            letterCount[c]--;
+            if (letterCount[c] < 0)
+                return false;
+        }
+
+        return true;
     }
 
     /// <summary>
