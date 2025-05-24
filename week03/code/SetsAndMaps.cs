@@ -105,16 +105,16 @@ public static class SetsAndMaps
     {
         // TODO Problem 3 - ADD YOUR CODE HERE
         // Normalize by removing spaces and converting to lowercase
-        string cleaned1 = new string(word1.ToLower().Where(c => !char.IsWhiteSpace(c)).ToArray());
-        string cleaned2 = new string(word2.ToLower().Where(c => !char.IsWhiteSpace(c)).ToArray());
+        string string1 = new string(word1.ToLower().Where(c => !char.IsWhiteSpace(c)).ToArray());
+        string string2 = new string(word2.ToLower().Where(c => !char.IsWhiteSpace(c)).ToArray());
 
-        if (cleaned1.Length != cleaned2.Length)
+        if (string1.Length != string2.Length)
             return false;
 
         var letterCount = new Dictionary<char, int>();
 
         // Count letters in the first word
-        foreach (char c in cleaned1)
+        foreach (char c in string1)
         {
             if (letterCount.ContainsKey(c))
                 letterCount[c]++;
@@ -123,7 +123,7 @@ public static class SetsAndMaps
         }
 
         // Subtract counts using second word
-        foreach (char c in cleaned2)
+        foreach (char c in string2)
         {
             if (!letterCount.ContainsKey(c))
                 return false;
