@@ -8,5 +8,7 @@ public class Node
     public Node(int data)
     {
         this.Data = data;
+        this.Next = null;
+        this.Prev = null;
     }
 }
