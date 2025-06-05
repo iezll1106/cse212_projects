@@ -147,7 +147,24 @@ public static class Recursion
     public static void WildcardBinary(string pattern, List<string> results)
     {
         // TODO Start Problem 4
-    }
+        // well use IndexOf("*") to find the first wildcard
+        int index = pattern.IndexOf("*");
+
+        // Base case: no wildcard left
+        if (index == -1)
+        {
+            results.Add(pattern);
+            return;
+        }
+
+        // Replace '*' with '0' and recurse
+        string patternWithZero = pattern.Substring(0, index) + '0' + pattern.Substring(index + 1);
+        WildcardBinary(patternWithZero, results);
+
+        // Replace '*' with '1' and recurse
+        string patternWithOne = pattern.Substring(0, index) + '1' + pattern.Substring(index + 1);
+        WildcardBinary(patternWithOne, results);
+}
 
     /// <summary>
     /// Use recursion to insert all paths that start at (0,0) and end at the
